@@ -1,0 +1,330 @@
+<style>
+    /* Conteneur principal optimisé pour les écrans larges (16/9) */
+	.qrz-main-container {
+        background-color: #0d1117; /* Fond sombre style "Tech" */
+        color: #e6edf3;
+        font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        padding: 30px;
+        border-radius: 16px;
+        border: 3px solid #00ff66; /* Superbe bordure vert flashy */
+        box-shadow: 0 0 25px rgba(0, 255, 102, 0.25); /* Lueur néon */
+        max-width: 1600px; /* Largeur idéale pour le format horizontal */
+        margin: 20px auto;
+        box-sizing: border-box;
+    }
+
+.qrz-main-container::before,
+.qrz-main-container::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 300px;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Première onde */
+
+.qrz-main-container::before {
+
+    background:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='300' viewBox='0 0 1200 300'%3E%3Cpath d='M0 150 Q 75 50 150 150 T 300 150 T 450 150 T 600 150 T 750 150 T 900 150 T 1050 150 T 1200 150' fill='none' stroke='%2300ff66' stroke-width='2' opacity='0.15'/%3E%3C/svg%3E");
+    background-repeat: repeat-x;
+    background-size: 1200px 300px;
+    animation: waveMove 18s linear infinite;
+}
+.qrz-main-container::after {
+    background:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='300' viewBox='0 0 1200 300'%3E%3Cpath d='M0 150 Q 75 50 150 150 T 300 150 T 450 150 T 600 150 T 750 150 T 900 150 T 1050 150 T 1200 150' fill='none' stroke='%2300ff66' stroke-width='2' opacity='0.15'/%3E%3C/svg%3E");
+    background-repeat: repeat-x;
+    background-size: 1200px 300px;
+    animation: waveMove 10s linear infinite;
+}
+
+
+
+/* Tous les éléments passent au-dessus */
+.qrz-main-container > * {
+    position: relative;
+    z-index: 1;
+}
+
+@keyframes waveMove {
+    from {
+        background-position-x: 0;
+    }
+    to {
+        background-position-x: 1200px;
+    }
+}
+
+@keyframes waveMoveReverse {
+    from {
+        background-position-x: 1200px;
+    }
+    to {
+        background-position-x: 0;
+    }
+}
+
+    /* En-tête avec ton indicatif */
+    .qrz-header {
+        text-align: center;
+        border-bottom: 2px solid rgba(0, 255, 102, 0.3);
+        padding-bottom: 20px;
+        margin-bottom: 30px;
+    }
+    
+    .qrz-header h1 {
+        color: #00ff66;
+        font-size: 3.2em;
+        margin: 0;
+        text-transform: uppercase;
+        letter-spacing: 4px;
+        text-shadow: 0 0 15px rgba(0, 255, 102, 0.6);
+    }
+    
+    .qrz-header p {
+        font-size: 1.3em;
+        color: #8b949e;
+        margin: 5px 0 0 0;
+        font-style: italic;
+    }
+
+    /* Disposition en colonnes pour la description et le matériel */
+    .qrz-layout-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr; /* Deux colonnes égales */
+        gap: 25px;
+        margin-bottom: 25px;
+    }
+
+    /* Blocs de contenu (Cards) */
+    .qrz-card {
+        background-color: #161b22;
+        border: 1px solid #30363d;
+        border-left: 5px solid #00ff66; /* Accent vert sur le côté */
+        border-radius: 4px 12px 12px 4px;
+        padding: 22px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .qrz-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 0 15px rgba(0, 255, 102, 0.2);
+    }
+
+    .qrz-card h2 {
+        color: #00ff66;
+        font-size: 1.6em;
+        margin-top: 0;
+        margin-bottom: 15px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    /* Style des listes pour le matériel */
+    .qrz-spec-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .qrz-spec-list li {
+        padding: 10px 0;
+        border-bottom: 1px solid #21262d;
+        font-size: 1.1em;
+    }
+
+    .qrz-spec-list li:last-child {
+        border-bottom: none;
+    }
+
+    .qrz-highlight {
+        color: #00ff66;
+        font-weight: bold;
+    }
+
+    /* Section Photos pleine largeur */
+    .qrz-photos-section {
+        margin-top: 10px;
+    }
+
+    /* Grille d'images */
+    .qrz-gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 20px;
+        margin-top: 15px;
+    }
+
+    /* Nouvelle structure pour la carte photo + description */
+    .qrz-photo-card {
+        background-color: #21262d;
+        border: 2px solid #30363d;
+        border-radius: 8px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        transition: border-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .qrz-photo-card:hover {
+        border-color: #00ff66;
+        transform: scale(1.02);
+    }
+
+    /* Lien cliquable qui englobe l'image */
+    .qrz-photo-link {
+        display: block;
+        aspect-ratio: 16 / 9; /* Force le format cinéma */
+        overflow: hidden;
+        cursor: pointer;
+    }
+
+    .qrz-photo-link img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* Adapte l'image sans la déformer */
+        transition: opacity 0.2s ease;
+    }
+
+    .qrz-photo-link:hover img {
+        opacity: 0.85; /* Effet de survol visuel pour indiquer que c'est cliquable */
+    }
+
+    /* Style de la petite description sous la photo */
+    .qrz-photo-desc {
+        padding: 12px;
+        margin: 0;
+        font-size: 0.95em;
+        color: #8b949e;
+        text-align: center;
+        background-color: #161b22;
+        border-top: 1px solid #30363d;
+    }
+
+    /* Rendu responsive si consulté sur smartphone */
+    @media (max-width: 768px) {
+        .qrz-layout-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+<div class="qrz-main-container">
+
+    <!-- En-tête -->
+    <header class="qrz-header">
+        <h1>F4NKP</h1>
+        <p>Opérateur : Julien</p>
+		<p>Dep : 37 Indre et loire </p>
+    </header>
+
+    <!-- Grille Principale (Description & Setup) -->
+    <div class="qrz-layout-grid">
+        
+        <!-- Bloc Description -->
+        <section class="qrz-card">
+            <h2>Description</h2>
+            <p>Bonjour et bienvenue sur ma page personnelle QRZ.com !</p>
+            <p>Je découvre le radioamateurisme. Je suis un nouveau licencié et j'aime explorer les différentes facettes du trafic décamétrique, que ce soit en portable ou depuis le QRA.</p>
+            <p>N'hésitez pas à me lancer appel si vous croisez mon indicatif sur l'air. Au plaisir de vous contacter prochainement, 73 de Julien !</p>
+        </section>
+
+        <!-- Bloc Station (Matériel) -->
+        <section class="qrz-card">
+            <h2>Ma Station / Setup</h2>
+            <ul class="qrz-spec-list">
+                <li><strong>Transceiver :</strong> <span class="qrz-highlight">Xiegu X6200</span></li>
+                <li><strong>Amplificateur :</strong> <span class="qrz-highlight">XPA125</span></li>
+                <li><strong>Puissance d'émission :</strong> <span class="qrz-highlight">100W</span></li>
+                <li><strong>Antenne :</strong> Filaire 20m de type <span class="qrz-highlight">End Fed</span></li>
+				<li><strong>Alimentation :</strong>  <span class="qrz-highlight">Batterie plomb en floating</span></li>
+            </ul>
+        </section>
+
+    </div>
+
+    <!-- Section Photos -->
+    <div class="qrz-card qrz-photos-section">
+        <h2>Galerie Photos de ma region </h2>
+        <div class="qrz-gallery-grid">
+            
+            <!-- Photo 1 -->
+            <div class="qrz-photo-card">
+                <!-- Remplace le href="..." et le src="..." par l'URL de ta vraie image -->
+                <a class="qrz-photo-link" href="https://wallpapers.com/images/high/debian-default-desktop-wallpaper-yecgojz0rd0uq98j.webp" target="_blank">
+                    <img alt="Ma Station F4NKP" src="https://wallpapers.com/images/high/debian-default-desktop-wallpaper-yecgojz0rd0uq98j.webp">
+                </a>
+                <p class="qrz-photo-desc">Debian.</p>
+            </div>
+
+            <!-- Photo 2 -->
+            <div class="qrz-photo-card">
+                <a class="qrz-photo-link" href="https://via.placeholder.com/640x360/21262d/00ff66?text=Photo+Antenne" target="_blank">
+                    <img alt="Mon Antenne End Fed" src="https://via.placeholder.com/640x360/21262d/00ff66?text=Photo+Antenne">
+                </a>
+                <p class="qrz-photo-desc">Installation de l'antenne filaire End Fed dans le jardin.</p>
+            </div>
+
+            <!-- Photo 3 -->
+            <div class="qrz-photo-card">
+                <a class="qrz-photo-link" href="https://via.placeholder.com/640x360/21262d/00ff66?text=Photo+Extérieur" target="_blank">
+                    <img alt="Trafic Outdoor" src="https://via.placeholder.com/640x360/21262d/00ff66?text=Photo+Extérieur">
+                </a>
+                <p class="qrz-photo-desc">Session de trafic en portable (SOTA / POTA).</p>
+            </div>
+
+        </div>
+    </div>
+	
+	<div class="qrz-card qrz-photos-section">
+        <h2>Galerie Photos du Materiel </h2>
+        
+        <div class="qrz-gallery-grid">
+            <div class="qrz-photo-card">
+                <a class="qrz-photo-link" href="https://storage.maomihezi.com/file/2025-01-17/81fDn3LGw7L._AC_SL1500_.jpg" target="_blank">
+                    <img alt="Ma Station F4NKP" src="https://storage.maomihezi.com/file/2025-01-17/81fDn3LGw7L._AC_SL1500_.jpg">
+                </a>
+                <p class="qrz-photo-desc">Xiegu X6200</p>
+            </div>
+            <div class="qrz-photo-card">
+                <a class="qrz-photo-link" href="URL_IMAGE_2" target="_blank">
+                    <img alt="Mon Antenne End Fed" src="URL_IMAGE_2">
+                </a>
+                <p class="qrz-photo-desc">Installation antenne.</p>
+            </div>
+            <div class="qrz-photo-card">
+                <a class="qrz-photo-link" href="URL_IMAGE_3" target="_blank">
+                    <img alt="Trafic Outdoor" src="URL_IMAGE_3">
+                </a>
+                <p class="qrz-photo-desc">Session de trafic.</p>
+            </div>
+        </div>
+
+        <div class="qrz-gallery-grid" style="margin-top: 20px;">
+            <div class="qrz-photo-card">
+                <a class="qrz-photo-link" href="URL_IMAGE_4" target="_blank">
+                    <img alt="Photo 4" src="URL_IMAGE_4">
+                </a>
+                <p class="qrz-photo-desc">Description photo 4.</p>
+            </div>
+            <div class="qrz-photo-card">
+                <a class="qrz-photo-link" href="URL_IMAGE_5" target="_blank">
+                    <img alt="Photo 5" src="URL_IMAGE_5">
+                </a>
+                <p class="qrz-photo-desc">Description photo 5.</p>
+            </div>
+            <div class="qrz-photo-card">
+                <a class="qrz-photo-link" href="URL_IMAGE_6" target="_blank">
+                    <img alt="Photo 6" src="URL_IMAGE_6">
+                </a>
+                <p class="qrz-photo-desc">Description photo 6.</p>
+            </div>
+        </div>
+    </div>
+
+</div>
